@@ -1,0 +1,11 @@
+{
+  "context-slash-command": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./skills/context/scripts/pre-invocation.ps1",
+        "timeout": 10
+      }
+    ]
+  }
+}

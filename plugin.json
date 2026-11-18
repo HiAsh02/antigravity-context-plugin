@@ -1,0 +1,15 @@
+{
+  "name": "context",
+  "displayName": "Context Window Monitor",
+  "version": "1.0.0",
+  "description": "Inspect current session context window usage, remaining token capacity, base system overhead breakdown (System, Skills, Rules, MCP, Plugins), and real-time Aux Pane monitor via /context.",
+  "author": "HiAsh02",
+  "homepage": "https://github.com/HiAsh02/antigravity-context-plugin",
+  "repository": "https://github.com/HiAsh02/antigravity-context-plugin",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "/context",
+    "查看当前 session 剩余上下文窗口",
+    "分析当前会话的 Token 消耗趋势与缓存命中率"
+  ]
+}

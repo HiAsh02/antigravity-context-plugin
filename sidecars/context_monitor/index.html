@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Context Monitor</title>
+  <script src="/preload.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="title">Context Monitor</span>
+        <span id="conv-badge" class="badge mono hidden" title=""></span>
+      </div>
+      <div class="topbar-right">
+        <span id="live-pill" class="live-pill" title="每 1.5 秒自动轮询刷新">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="live-text">Live</span>
+        </span>
+      </div>
+    </header>
+
+    <main id="content" class="content">
+      <section class="card hero-card">
+        <div class="hero-top">
+          <div>
+            <div class="eyebrow">当前上下文窗口占用</div>
+            <div class="hero-pct-row">
+              <span id="used-pct" class="hero-pct">--%</span>
+              <span id="compact-pill" class="warn-pill hidden">建议 /compact</span>
+            </div>
+          </div>
+          <div class="hero-nums">
+            <div class="hero-active mono" id="hero-active">-- / 1,048,576</div>
+            <div class="hero-rem" id="hero-rem">剩余 -- tokens</div>
+          </div>
+        </div>
+
+        <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar-track">
+          <div id="bar-base" class="bar-seg bar-base" style="width: 0%" title="基础系统开销"></div>
+          <div id="bar-growth" class="bar-seg bar-growth" style="width: 0%" title="会话累计增量"></div>
+        </div>
+
+        <div class="legend">
+          <span class="legend-item">
+            <span class="swatch swatch-base"></span>
+            <span>基础开销 <strong id="leg-base" class="mono">--</strong></span>
+          </span>
+          <span class="legend-item">
+            <span class="swatch swatch-growth"></span>
+            <span>会话增量 <strong id="leg-growth" class="mono">--</strong></span>
+          </span>
+          <span class="legend-item legend-rem">
+            <span class="swatch swatch-rem"></span>
+            <span>剩余 <strong id="leg-rem" class="mono">--</strong></span>
+          </span>
+        </div>
+      </section>
+
+      <section class="grid-4">
+        <div class="card stat-card">
+          <div class="stat-label">基础系统开销</div>
+          <div id="stat-base" class="stat-value mono">--</div>
+          <div id="stat-base-sub" class="stat-sub">System · Skills · Rules · MCP</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">会话累计增量</div>
+          <div id="stat-growth" class="stat-value mono">--</div>
+          <div id="stat-growth-sub" class="stat-sub">-- 轮提问 · -- 次调用</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">最新轮次缓存命中</div>
+          <div id="stat-cache" class="stat-value mono">--%</div>
+          <div id="stat-cache-sub" class="stat-sub">缓存 -- · 新增 --</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">会话累计消耗</div>
+          <div id="stat-cum" class="stat-value mono">--</div>
+          <div id="stat-cum-sub" class="stat-sub">总命中率 --% · 压缩 0 次</div>
+        </div>
+      </section>
+
+      <section class="card breakdown-card">
+        <div class="section-head">
+          <span class="section-title">基础系统开销详细拆解</span>
+          <span id="bd-meta" class="section-meta mono">--</span>
+        </div>
+        <div id="bd-bar" class="bd-bar" aria-label="基础系统开销构成比例"></div>
+        <div id="bd-groups" class="bd-groups">
+          <div class="empty-note">等待基础开销数据…</div>
+        </div>
+      </section>
+
+      <section class="card chart-card">
+        <div class="section-head">
+          <span class="section-title">上下文增长趋势</span>
+          <span id="chart-meta" class="section-meta mono">--</span>
+        </div>
+        <div id="chart-wrap" class="chart-wrap">
+          <div class="empty-note">等待模型调用数据…</div>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="section-head">
+          <span class="section-title">调用步数明细</span>
+          <span id="table-meta" class="section-meta">倒序展示</span>
+        </div>
+        <div class="table-scroll">
+          <table class="steps-table">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th class="num">总上下文</th>
+                <th class="num">变化</th>
+                <th class="num">缓存读取</th>
+                <th class="num">新增输入</th>
+                <th class="num">输出</th>
+              </tr>
+            </thead>
+            <tbody id="steps-body">
+              <tr><td colspan="6" class="empty-cell">暂无调用记录</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
